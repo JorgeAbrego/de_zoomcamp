@@ -1,0 +1,44 @@
+Commands and queries used to answer week 1 homework's questions
+
+- Question 1:  Knowing docker tags
+Run:
+> docker build --help
+
+- Question 2:  Understanding docker first run
+First run:
+> docker run -it python:3.9 /bin/bash
+Once in console, run:
+> pip list
+
+- Question 3: Count records
+select count(1)
+from green_taxi_data t
+where DATE(t.lpep_pickup_datetime) = '2019-01-15' and DATE(t.lpep_dropoff_datetime) = '2019-01-15' 
+
+- Question 4: Largest trip for each day
+select t.lpep_pickup_datetime , MAX(t.trip_distance) trip_distance
+from green_taxi_data t
+group by t.lpep_pickup_datetime 
+order by 2 desc
+
+- Question 5: The number of passengers
+For 2 passengers
+select count(1)
+from green_taxi_data t
+where DATE(t.lpep_pickup_datetime) = '2019-01-01'
+	and t.passenger_count = 2
+  
+For 3 passengers
+select count(1)
+from green_taxi_data t
+where DATE(t.lpep_pickup_datetime) = '2019-01-01'
+	and t.passenger_count = 3
+
+- Question 6: Largest tip
+select zo."Zone" ZoneFrom, zd."Zone" ZoneTo, MAX(t.tip_amount) Tip
+from green_taxi_data t
+	inner join zones zo on zo."LocationID" = t."PULocationID"  
+	inner join zones zd on zd."LocationID" =t."DOLocationID" 
+where zo."Zone" ='Astoria'
+group by zo."Zone", zd."Zone"
+order by 3 desc
