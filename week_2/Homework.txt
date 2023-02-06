@@ -1,0 +1,25 @@
+Commands and queries used to answer week 2 homework's questions
+
+Question 1:  January 2020 data
+Run:
+> python etl_web_to_gcs.py
+
+Question 2. Scheduling with Cron
+Go to Deployments, pick one -> Edit -> Scheduling -> Edit -> select Cron -> enter 0 5 1 * *
+
+Question 3. Loading data to BigQuery
+First, before deployment, I commented line
+#df["passenger_count"].fillna(0, inplace=True)
+Then, I deployed el_gcs_to_bq.py and ran it.
+At the end, I ran next query:
+> SELECT COUNT(1) FROM `vld-dtc-de-00001.dezoomcamp.rides2019`
+
+Question 4. Github Storage Block
+First, I pushed my flow into Github, then create a Deployment and ran it
+
+Question 5. Email or Slack notifications
+I created a notification using Slack  webhook provided by course, then run 
+> python etl_web_to_gcs.py
+
+Question 6. Secrets
+I created a Secret Block, I enter the word "toor" as value and save it. 
