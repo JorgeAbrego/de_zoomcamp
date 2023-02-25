@@ -1,0 +1,22 @@
+Answers and code of Week 4 Homework
+
+Question 1: What is the count of records in the model fact_trips after running all models with the test run variable disabled and filtering for 2019 and 2020 data only (pickup datetime)
+Code:
+SELECT count(*) FROM `dbt_vlady.fact_trips` WHERE EXTRACT(year FROM pickup_datetime) in (2019, 2020)
+Answer: 61,540,565
+
+Question 2: What is the distribution between service type filtering by years 2019 and 2020 data as done in the videos . (Yellow/Green)
+Answer: 89.9 Yellow/10.1 Green
+
+Question 3: What is the count of records in the model stg_fhv_tripdata after running all models with the test run variable disabled
+Code:
+SELECT COUNT(*) FROM `dbt_vlady.stg_fhv_tripdata` WHERE EXTARCT(year FROM pickup_datetime) = 2019
+Answer: 43 244 696
+
+Question 4: What is the count of records in the model fact_fhv_trips after running all dependencies with the test run variable disabled 
+Code:
+SELECT COUNT(*) FROM `dbt_vlady.fact_trips_fhv` WHERE EXTARCT(year FROM pickup_datetime)=2019
+Answer: 46,444,348
+
+Question 5: What is the month with the biggest amount of rides after building a tile for the fact_fhv_trips table 
+Based on observation of dashboard created, the month with the biggest amount of ruides was January
