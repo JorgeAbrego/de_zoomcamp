@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  pgdatabase:
+    image: postgres:15-alpine
+    container_name: postgres_server
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ny_taxi
+    volumes:
+      - "./postgres_data:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432"
+    networks:
+      - pg-network
+
+  pgadmin:
+    image: dpage/pgadmin4:7.6
+    container_name: pgadmin_client
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    user: '$UID:$GID'
+    volumes:
+      - "./pgadmin_data:/var/lib/pgadmin"
+    ports:
+      - "8080:80"
+    networks:
+      - pg-network
+
+networks:
+  pg-network:

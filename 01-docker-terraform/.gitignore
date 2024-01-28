@@ -1,0 +1,8 @@
+data/
+pgadmin_data/
+postgres_data/
+*.csv
+*.tfstate
+*.tfstate.*
+**.terraform
+**.terraform.lock.*
